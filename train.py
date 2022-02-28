@@ -14,7 +14,7 @@ logging.disable(logging.WARNING)
 def main():
     LEARNING_RATE = 1e-4
 
-    model = xnet.Xnet(backbone_name='resnet50', classes=3)
+    model = xnet.Xnet(backbone_name='efficientnetb0', classes=3)
 
     model.compile(loss=losses.SparseCategoricalCrossentropy(),
                   optimizer=Adam(learning_rate=LEARNING_RATE),
