@@ -2,16 +2,15 @@
 from functools import wraps
 import numpy as np
 
+
 def get_layer_number(model, layer_name):
     """
     Help find layer in Keras model by name
     Args:
         model: Keras `Model`
         layer_name: str, name of layer
-
     Returns:
         index of layer
-
     Raises:
         ValueError: if model does not contains layer with such name
     """
@@ -19,6 +18,15 @@ def get_layer_number(model, layer_name):
         if l.name == layer_name:
             return i
     raise ValueError('No layer with name {} in  model {}.'.format(layer_name, model.name))
+
+
+def to_tuple(x):
+    if isinstance(x, tuple):
+        if len(x) == 2:
+            return x
+    elif np.isscalar(x):
+        return (x, x)
+    raise ValueError('Value should be tuple of length 2 or int value, got "{}"'.format(x))
 
 
 def extract_outputs(model, layers, include_top=False):
@@ -77,12 +85,3 @@ def set_trainable(model):
         layer.trainable = True
     recompile(model)
 
-
-def to_tuple(x):
-    if isinstance(x, tuple):
-        if len(x) == 2:
-            return x
-    elif np.isscalar(x):
-        return (x, x)
-
-    raise ValueError('Value should be tuple of length 2 or int value, got "{}"'.format(x))

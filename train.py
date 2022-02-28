@@ -4,8 +4,6 @@ import time
 
 import floorplans
 from segmentation_models import xnet
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
 from tensorflow.keras.optimizers import Adam
 from tensorflow import losses, metrics
 
